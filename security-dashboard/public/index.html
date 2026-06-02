@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">API Security Operations</p>
+            <h1>Security Risk Dashboard</h1>
+            <p class="subtitle">Live monitoring for the API gateway and backend traffic, events, and threat analytics.</p>
+        </div>
+        <div class="header-actions">
+            <button id="refreshButton" class="primary">Refresh data</button>
+            <span id="statusBadge" class="badge badge-ok">Connected</span>
+        </div>
+    </header>
+
+    <section class="summary-grid" id="summaryCards"></section>
+
+    <section class="dashboard-panel">
+        <div class="panel-column panel-filters">
+            <h2>Filters</h2>
+            <label>Search user or URL
+                <input id="searchInput" type="search" placeholder="Type guest, admin, /api, /users" />
+            </label>
+            <label>User
+                <select id="userFilter">
+                    <option value="">All Users</option>
+                </select>
+            </label>
+            <label>Method
+                <select id="methodFilter">
+                    <option value="">All Methods</option>
+                </select>
+            </label>
+            <label>Status
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                </select>
+            </label>
+            <label>STRIDE
+                <select id="strideFilter">
+                    <option value="">All STRIDE</option>
+                </select>
+            </label>
+            <label class="checkbox-row">
+                <input id="blockedOnly" type="checkbox" />
+                Show blocked or suspicious events only
+            </label>
+        </div>
+
+        <div class="panel-column panel-content">
+            <div class="section-header">
+                <div>
+                    <h2>Event stream</h2>
+                    <p class="section-meta">Latest activity from the API Gateway and insecure backend.</p>
+                </div>
+                <span id="eventCount" class="badge badge-info">0 events</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Method</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>STRIDE</th>
+                            <th>Risk</th>
+                            <th>DREAD</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="insights-grid">
+        <div class="insight-card">
+            <h3>Top users</h3>
+            <ul id="topUsers"></ul>
+        </div>
+        <div class="insight-card">
+            <h3>Top endpoints</h3>
+            <ul id="topEndpoints"></ul>
+        </div>
+        <div class="insight-card">
+            <h3>Request Methods</h3>
+            <ul id="methodsList"></ul>
+        </div>
+        <div class="insight-card">
+            <h3>Security Threats (STRIDE)</h3>
+            <ul id="strideList"></ul>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
